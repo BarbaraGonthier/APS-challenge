@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% for subscriber in subscribers %}
+    <h1> Hi {{ subscriber.name }}</h1>
+    <p>We noticed you have not subscribed to this year season yet, please follow this link to subscriber :
+    <a href="/list/subscribe/{{ subscriber.id }}"> I want to subscribe </a>
+    </p>
+    {% endfor %}
+{% endblock %}

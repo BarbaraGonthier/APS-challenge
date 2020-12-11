@@ -1,5 +1,34 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    <div class="container-fluid">
+        <h1>Administration page</h1>
+        <h2>Guests</h2>
+        <ul>
+            {% for subscriber in subscribers %}
+                <li>{{ subscriber.name }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Guests who have already subscribed for this year</h2>
+        <ul>
+            {% for subscriber in thisYearSubscribers %}
+                <li>{{ subscriber.name }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Guests who have not subscribed for this year yet</h2>
+        <form action="" method="post">
+            <div>
+                {% for subscriber in notSubscribedYet %}
+                    <div>
+                        <input type="checkbox" id="subscriber_id" name="subscriber_id" value="{{ subscriber.id }}">
+                        <label for="subscriber_id"> {{ subscriber.name }} </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark">Send Subscription Email</button>
+            </div>
+        </form>
+    </div>
+
 {% endblock %}

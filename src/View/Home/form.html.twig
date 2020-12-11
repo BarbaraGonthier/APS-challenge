@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1>Dear {{ subscriber.name }}</h1>
+        <p>Would you liked to subscribe to this year season?</p>
+        <form action="" method="post">
+            <div>
+                <div>
+                    <input type="checkbox" id="season_id" name="season_id" value="2">
+                    <label for="season_id"> I want to subscribe to this year season </label>
+                </div>
+            </div>
+            <input type="hidden" name="subscriber_id" value="{{ subscriber.id }}">
+            <div>
+                <button type="submit" class="btn btn-dark">Send</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
