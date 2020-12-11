@@ -1,8 +1,12 @@
 # APS-Challenge
 
+Here is a quick video of the use : https://www.loom.com/share/d92587bbe8834adabec76ce80a56c2b2
+
 ## Description
 
-This repository is based on a simple PHP MVC structure from scratch.
+This repository is a quick challenge to spot the guests who have not subscribed to this season yet, be able to send them a personalized email with a link allowing them to subscribe.
+
+It is based on a simple PHP MVC structure from scratch.
 
 It uses some cool vendors/libraries such as Twig and Grumphp.
 For this one, just a simple example where users can choose one of their databases and see tables in it.
