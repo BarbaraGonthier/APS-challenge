@@ -1,8 +1,8 @@
-# Simple MVC
+# APS-Challenge
 
 ## Description
 
-This repository is a simple PHP MVC structure from scratch.
+This repository is based on a simple PHP MVC structure from scratch.
 
 It uses some cool vendors/libraries such as Twig and Grumphp.
 For this one, just a simple example where users can choose one of their databases and see tables in it.
