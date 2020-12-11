@@ -9,6 +9,10 @@
 
 namespace App\Controller;
 
+use App\Model\ListManager;
+use App\Model\SubscriberManager;
+use App\Model\SubscriptionManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -21,6 +25,41 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $subscriberManager = new SubscriberManager();
+        $subscribers = $subscriberManager->selectAll();
+
+        $subscriptionManager = new SubscriptionManager();
+        $thisYearSubscribers = $subscriptionManager->selectAllJoinSeasonTwo();
+        $thisYearSubscribersId = [];
+        $notSubscribedYet = [];
+        $mailtoIds = [];
+
+        foreach ($thisYearSubscribers as $thisYearSubscriber) {
+            $thisYearSubscribersId[] = $thisYearSubscriber['id'];
+        }
+        foreach ($subscribers as $subscriber) {
+                if (!in_array($subscriber['id'], $thisYearSubscribersId)) {
+                    $notSubscribedYet[] = $subscriber;
+                }
+        }
+
+        foreach ($notSubscribedYet as $mailto) {
+            $mailtoIds[] = $mailto['id'];
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            foreach ($mailtoIds as $subscriber_id){
+                $listManager = new ListManager();
+                $listManager->saveList($subscriber_id);
+            }
+                header('Location:/list/mail/');
+        }
+
+        return $this->twig->render('Home/index.html.twig', [
+            'subscribers' => $subscribers,
+            'thisYearSubscribers' => $thisYearSubscribers,
+            'notSubscribedYet' => $notSubscribedYet,
+        ]);
+
     }
 }
